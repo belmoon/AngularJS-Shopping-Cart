@@ -1,0 +1,63 @@
+<div ng-controller="CheckoutCtrl">
+    <div class="text-info" ng-hide="!transactionComplete">
+        Thank you, you have been checked out!<br>
+        <a href="#">
+            <input type="button" class="btn btn-primary" style="width: 200px"
+                   value="Continue shopping">
+        </a>
+    </div>
+    <div class="container-fluid" ng-hide="transactionComplete">
+        <div class="col-sm-pull-3">
+            <order-summary std-shipping="cart.standardShippingPrice" total="cart.total" is-pay="isPay"></order-summary>
+        </div>
+        <hr/>
+        <div class="col-lg-4 col-xs-push-4">
+            <form name="checkoutForm" novalidate>
+                <div class="well">
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input name="firstName" type="text" class="form-control" ng-model="billing.firstName" style="height: 40px" required>
+                            <span class="invalid" ng-show="checkoutForm.firstName.$error.required && checkoutForm.firstName.$dirty">
+                                First name is required!
+                            </span>
+                        <label>Last Name:</label>
+                        <input name="lastName" type="text" class="form-control" ng-model="billing.lastName" style="height: 40px" required>
+                            <span class="invalid" ng-show="checkoutForm.lastName.$error.required && checkoutForm.lastName.$dirty">
+                                Last name is required!
+                            </span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" name="billingEmail" class="form-control" ng-model="billing.email" style="height: 40px" required>
+                            <span class="invalid" ng-show="checkoutForm.billingEmail.$error.required && checkoutForm.billingEmail.$dirty">
+                                Email is required!
+                            </span>
+                            <span class="invalid" ng-show="checkoutForm.billingEmail.$error.email && checkoutForm.billingEmail.$dirty">
+                                Emails is not valid!
+                            </span>
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input name="address1" type="text" class="form-control" ng-model="billing.address1" style="height: 40px" required>
+                            <span class="invalid" ng-show="checkoutForm.address1.$error.required && checkoutForm.address1.$dirty">
+                                Address is required!
+                            </span>
+                        <input name="address2" type="text" class="form-control" ng-model="billing.address2" style="height: 40px"">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="agreed" type="checkbox" ng-model="billing.agreed" required>
+                            I agree with the terms and conditions
+                        </label>
+                        <span class="invalid" ng-show="checkoutForm.agreed.$error.required && checkoutForm.agreed.$dirty">
+                                Please agree the terms and conditions
+                        </span>
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-block" ng-disabled="checkoutForm.$invalid" ng-click="complete()">
+                            Submit
+                        </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

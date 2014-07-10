@@ -1,0 +1,71 @@
+<div ng-controller="CartCtrl">
+    <div class="text-info">
+        <p>My shopping cart</p>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-lg-9">
+            <table class="table table-bordered">
+                <tr class="well">
+                    <td>Item</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="product in store.userProducts">
+                    <td>{{product.name}}</td>
+                    <td>{{product.price | currency}}</td>
+                    <td class="text-center">
+                        <div class="col-sm-2">
+                            <div class="input-group" style="width: 150px;">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"
+                                            ng-click="changeQuantityClick(product.name, product.price, 'increase')"
+                                            ng-disabled="product.checkedQuantity == product.quantity">+
+                                    </button>
+                                </span>
+                                <input type="text" class="form-control" value="{{product.checkedQuantity}}" readonly
+                                       style="height: 30px">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"
+                                            ng-click="changeQuantityClick(product.name, product.price, 'decrease')"
+                                            ng-disabled="product.checkedQuantity == 0">-
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="button" class="btn btn-primary" value="Remove"
+                               ng-click="removeFromCartClick(product)"/></td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{cart.total | currency}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-pull-3">
+            <a href="#">
+                <input type="button" class="btn btn-primary" style="width: 200px" ng-click="backToStoreClick()"
+                       value="Back to store">
+            </a>
+        </div>
+        <div class="col-sm-pull-3">
+            <input type="button" class="btn btn-warning" style="width: 200px" ng-click="clearCartClick()"
+                   value="Clear my cart">
+        </div>
+        <div class="col-sm-pull-3">
+            <input type="button" class="btn btn-info" style="width: 200px" ng-click="orderSummaryClick()"
+                   value="Order summary">
+        </div>
+        <div class="col-sm-pull-3">
+            <!--Order summary directive-->
+            <div collapse="isCollapsed">
+                <order-summary std-shipping="cart.standardShippingPrice" total="cart.total"></order-summary>
+            </div>
+        </div>
+    </div>
+</div>

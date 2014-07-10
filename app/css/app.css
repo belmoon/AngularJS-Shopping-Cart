@@ -1,0 +1,22 @@
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
+.modal-dialog{
+    width: 300px;
+}
+
+form .ng-invalid-required.ng-dirty{
+    background-color: lightcoral;
+}
+
+form .ng-invalid.ng-dirty{
+    background-color: lightcoral;
+}
+
+form .ng-valid.ng-dirty{
+    background-color: lightgreen;
+}
+
+form span.invalid{
+    text-decoration-color: red;
+}

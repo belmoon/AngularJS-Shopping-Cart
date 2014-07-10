@@ -1,0 +1,45 @@
+<div ng-controller="StoreCtrl" ng-init="init()">
+
+    <div class="col-xs-3">
+        <a ng-click="selectCategory()"
+           class="btn btn-block btn-default btn-lg">All</a>
+        <a ng-repeat="item in uniqueSkus | orderBy: 'item'" class=" btn btn-block btn-default btn-lg" ng-click="selectCategory(item)"
+                ng-class="{'active': markSelectedSku(item)}">
+            {{item | capitalize}}
+        </a>
+    </div>
+
+    <div class="col-xs-8">
+        <table class="table table-bordered">
+            <tr class="well text-right">
+                <td colspan="7">
+                    <label>{{cart.totalQuantity}} Items, Price {{cart.total | currency}}</label>
+                </td>
+            </tr>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="product in filteredProducts | filter: categoryFilterFn">
+                <td>{{$index + 1}}</td>
+                <td>
+                    <a ng-href="#/product/{{product.name}}">{{product.name}}</a>
+                </td>
+                <td>{{product.description}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.price | currency}}</td>
+                <td><button class="btn btn-success" ng-click="addToCart(product.name, product.quantity, product.price)" ng-disabled="product.quantity == 0">Add to cart</button></td>
+            </tr>
+        </table>
+
+        <pagination total-items="totalItems"
+                    page="currentPage" max-size="maxSize"
+                    class="pagination-sm pull-right" boundary-links="true"
+                    rotate="false" num-pages="numPages"></pagination>
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="store">
+
+<head>
+    <link href="scripts/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link data-require="bootstrap-css@2.3.2" data-semver="2.3.2" rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+</head>
+
+<body class="container" ng-controller="MainCtrl" style="width: 1200px">
+<div>
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li ng-class="{'active': getCurrentPath('/')}"><a href="#">Home</a></li>
+            <li ng-class="{'active': getCurrentPath('/cart')}"><a ng-click="isUserLoggedIn()">My Cart</a></li>
+            <li ng-class="{'active': getCurrentPath('/logout')}"><a ng-click="logoutClick()">Log out</a></li>
+        </ul>
+        <h3 class="text-muted">Welcome {{store.currentLoggedUser.name}} to  my AngularJS store.</h3>
+    </div>
+
+    <div class="container" style="width: 1200px">
+        <div ng-view=""></div>
+    </div>
+
+    <br>
+
+    <div class="footer panel-footer navbar-fixed-bottom center-block" style="width: 1200px">
+        <p>&copy; Shopping Cart Application</p>
+    </div>
+
+</div>
+<script src="scripts/angular/angular.min.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/jquery/jquery-1.9.1.js"></script>
+<script src="scripts/bootstrap/bootstrap.min.js"></script>
+<script src="scripts/angular/angular-route-1.2.0.js"></script>
+<script src="scripts/angular/angular-resource.min.js"></script>
+<script src="scripts/angular-ui/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<script src="models/CartCtrl.js"></script>
+<script src="models/ProductCtrl.js"></script>
+<script src="models/LoginCtrl.js"></script>
+<script src="models/MainCtrl.js"></script>
+<script src="models/StoreCtrl.js"></script>
+<script src="models/CheckoutCtrl.js"></script>
+<script src="services/StoreService.js"></script>
+<script src="services/UserService.js"></script>
+<script src="filter/Filters.js"></script>
+<script src="directives/orderSummary.js"></script>
+</body>
+
+</html>

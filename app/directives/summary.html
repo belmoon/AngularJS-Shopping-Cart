@@ -1,0 +1,49 @@
+<div style="width: 200px">
+    <div ng-hide="orderSummaryPanelHide">
+        <p>
+            <b>Your order summary</b>
+        </p>
+
+        <p>
+        <table style="width: 199px">
+            <tr>
+                <td>
+                    Subtotal:
+                </td>
+                <td class="pull-right">
+                    {{total | currency}}
+                </td>
+            </tr>
+        </table>
+        </p>
+        <p>
+        <table style="width: 199px">
+            <tr>
+                <td>
+                    Shipping:
+                </td>
+                <td class="pull-right">
+                    {{standardShippingPrice | currency}}
+                </td>
+            </tr>
+        </table>
+        </p>
+        <hr/>
+        <p>
+        <table style="width: 199px">
+            <tr>
+                <td>
+                    Total:
+                </td>
+                <td class="pull-right">
+                    {{total + standardShippingPrice | currency}}
+                </td>
+            </tr>
+        </table>
+        </p>
+        <a href="#/checkout"><button type="button" class="btn btn-info pull-right" ng-click="checkoutClick()" ng-hide="pay">Checkout</button></a>
+    </div>
+    <div ng-hide="!orderSummaryPanelHide">
+        <p style="color: red">Your cart is empty</p>
+    </div>
+</div>
